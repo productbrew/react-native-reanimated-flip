@@ -1,7 +1,7 @@
 import * as React from "react"
 import { View, StyleSheet, Button } from "react-native"
 
-import FlipCard from "../index"
+import FlipCard from "../src/index"
 import Side from "./Side"
 
 const App = () => {

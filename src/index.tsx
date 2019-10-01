@@ -1,7 +1,7 @@
 import * as React from "react"
 import { StyleSheet } from "react-native"
 import Animated from "react-native-reanimated"
-import { bInterpolate, spring } from "react-native-redash"
+import { spring } from "react-native-redash"
 
 const {
   Value,
@@ -44,11 +44,21 @@ const ReanimatedFlip = ({ perspective = 350, side, front, back }: Props) => {
     [side]
   )
 
-  const rotateY = concat(bInterpolate(flipPosition, 0, 180), "deg")
+  const rotatePosition = interpolate(flipPosition, {
+    inputRange: [0, 1],
+    outputRange: [0, 180],
+  })
+  const rotateY = concat(rotatePosition, "deg")
 
-  const opacity = interpolate(flipPosition, {
+  const opacityFront = interpolate(flipPosition, {
     inputRange: [0.5, 0.51],
     outputRange: [1, 0],
+    extrapolate: Animated.Extrapolate.CLAMP,
+  })
+
+  const opacityBack = interpolate(flipPosition, {
+    inputRange: [0.5, 0.51],
+    outputRange: [0, 1],
     extrapolate: Animated.Extrapolate.CLAMP,
   })
 
@@ -59,7 +69,7 @@ const ReanimatedFlip = ({ perspective = 350, side, front, back }: Props) => {
           styles.side,
           styles.front,
           {
-            opacity,
+            opacity: opacityFront,
             transform: [{ perspective }, { rotateY }],
           },
         ]}
@@ -71,6 +81,7 @@ const ReanimatedFlip = ({ perspective = 350, side, front, back }: Props) => {
           styles.side,
           styles.back,
           {
+            opacity: opacityBack,
             transform: [{ perspective }, { rotateY: "180deg" }, { rotateY }],
           },
         ]}
