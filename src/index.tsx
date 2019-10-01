@@ -1,5 +1,5 @@
 import * as React from "react"
-import { StyleSheet, Text } from "react-native"
+import { StyleSheet } from "react-native"
 import Animated from "react-native-reanimated"
 import { bInterpolate, spring } from "react-native-redash"
 
@@ -23,7 +23,7 @@ type Props = {
   back: React.ReactElement
 }
 
-const FlipCard = ({ perspective = 350, side, front, back }: Props) => {
+const ReanimatedFlip = ({ perspective = 350, side, front, back }: Props) => {
   const { flipPosition, clock } = React.useMemo(
     () => ({
       flipPosition: new Value(side),
@@ -97,4 +97,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default FlipCard
+export default ReanimatedFlip
