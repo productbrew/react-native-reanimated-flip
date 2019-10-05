@@ -12,7 +12,7 @@ const CardSide = ({ title, color }: Props) => {
   React.useEffect(() => {
     setInterval(() => {
       setCount(count => count + Math.floor(Math.random() * 20))
-    }, 100)
+    }, 1000)
   }, [])
 
   return (
