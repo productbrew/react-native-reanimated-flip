@@ -1,5 +1,7 @@
 # REACT-NATIVE-REANIMATED-FLIP
 
+![](gif/flip.gif)
+
 # Install
 
 ```sh

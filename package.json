@@ -11,14 +11,20 @@
   "module": "lib/module/index.js",
   "react-native": "lib/module/index.js",
   "types": "lib/typescript/index.d.ts",
+  "keywords": [
+    "react-native",
+    "flip",
+    "reanimated",
+    "gesture",
+    "handler",
+    "flip-card",
+    "card-flip"
+  ],
   "scripts": {
     "test": "echo shrug && exit 1",
     "prepare": "bob build",
     "release": "release-it",
     "typescript": "tsc --noEmit"
-  },
-  "dependencies": {
-    "react-native-redash": "^8.1.0"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^7.5.0",
