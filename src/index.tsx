@@ -1,7 +1,6 @@
 import * as React from "react"
-import { StyleSheet } from "react-native"
-import Animated from "react-native-reanimated"
-import { spring } from "react-native-redash"
+import { StyleSheet, ViewStyle } from "react-native"
+import Animated, { Easing } from "react-native-reanimated"
 
 const {
   Value,
@@ -14,16 +13,73 @@ const {
   eq,
   block,
   not,
+  clockRunning,
+  startClock,
+  stopClock,
+  timing,
 } = Animated
+
+function runTiming(
+  clock: Animated.Clock,
+  value: Animated.Adaptable<number>,
+  dest: Animated.Adaptable<number>
+) {
+  const state = {
+    finished: new Value(0),
+    position: new Value(0),
+    time: new Value(0),
+    frameTime: new Value(0),
+  }
+
+  const config = {
+    duration: 500,
+    toValue: new Value(0),
+    easing: Easing.inOut(Easing.ease),
+  }
+
+  return block([
+    cond(
+      clockRunning(clock),
+      [
+        // if the clock is already running we update the toValue, in case a new dest has been passed in
+        set(config.toValue, dest),
+      ],
+      [
+        // if the clock isn't running we reset all the animation params and start the clock
+        set(state.finished, 0),
+        set(state.time, 0),
+        set(state.position, value),
+        set(state.frameTime, 0),
+        set(config.toValue, dest),
+        startClock(clock),
+      ]
+    ),
+    // we run the step here that is going to update position
+    timing(clock, state, config),
+    // if the animation is over we stop the clock
+    cond(state.finished, stopClock(clock)),
+    // we made the block return the updated position
+    state.position,
+  ])
+}
 
 type Props = {
   perspective?: number
   side: 1 | 0
+  rotate?: "Y" | "X"
+  style?: ViewStyle
   front: React.ReactElement
   back: React.ReactElement
 }
 
-const ReanimatedFlip = ({ perspective = 350, side, front, back }: Props) => {
+const ReanimatedFlip = ({
+  perspective = 350,
+  rotate = "Y",
+  side,
+  front,
+  back,
+  style,
+}: Props) => {
   const { flipPosition, clock } = React.useMemo(
     () => ({
       flipPosition: new Value(side),
@@ -37,7 +93,8 @@ const ReanimatedFlip = ({ perspective = 350, side, front, back }: Props) => {
       cond(not(eq(side, flipPosition)), [
         set(
           flipPosition,
-          spring({ clock: clock, from: flipPosition, to: side })
+          runTiming(clock, flipPosition, side)
+          // spring({ clock: clock, from: flipPosition, to: side })
         ),
       ]),
     ]),
@@ -48,7 +105,7 @@ const ReanimatedFlip = ({ perspective = 350, side, front, back }: Props) => {
     inputRange: [0, 1],
     outputRange: [0, 180],
   })
-  const rotateY = concat(rotatePosition, "deg")
+  const rotateValue = concat(rotatePosition, "deg")
 
   const opacityFront = interpolate(flipPosition, {
     inputRange: [0.5, 0.51],
@@ -63,14 +120,14 @@ const ReanimatedFlip = ({ perspective = 350, side, front, back }: Props) => {
   })
 
   return (
-    <Animated.View style={styles.container}>
+    <Animated.View style={StyleSheet.flatten([style, styles.container])}>
       <Animated.View
         style={[
           styles.side,
           styles.front,
           {
             opacity: opacityFront,
-            transform: [{ perspective }, { rotateY }],
+            transform: [{ perspective }, { [`rotate${rotate}`]: rotateValue }],
           },
         ]}
       >
@@ -82,7 +139,11 @@ const ReanimatedFlip = ({ perspective = 350, side, front, back }: Props) => {
           styles.back,
           {
             opacity: opacityBack,
-            transform: [{ perspective }, { rotateY: "180deg" }, { rotateY }],
+            transform: [
+              { perspective },
+              { [`rotate${rotate}`]: "180deg" },
+              { [`rotate${rotate}`]: rotateValue },
+            ],
           },
         ]}
       >
