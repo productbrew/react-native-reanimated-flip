@@ -6,29 +6,30 @@ import Side from "./Side"
 
 const App = () => {
   const [side, setSide] = React.useState<0 | 1>(0)
+  const [rotate, setRotate] = React.useState<"Y" | "X">("Y")
 
   return (
     <View style={styles.container}>
-      <View
-        style={{
-          position: "absolute",
-          top: 100,
-          right: 0,
-          left: 0,
+      <Button
+        title={`Flip the card. The side of the card is: ${side}`}
+        onPress={() => {
+          setSide(side => (side === 0 ? 1 : 0))
         }}
-      >
-        <Button
-          title={`FLIP PRESS FROM CONTROLLED BY USER. \n The side of the card is: ${side}`}
-          onPress={() => {
-            setSide(side => (side === 0 ? 1 : 0))
-          }}
-        />
-      </View>
+      />
+
+      <Button
+        title={`Change rotation. The card rotation is: ${rotate}`}
+        onPress={() => {
+          setRotate(rotation => (rotation === "X" ? "Y" : "X"))
+        }}
+      />
 
       <FlipCard
         side={side}
-        front={<Side title="JEDEN" color="blue" />}
-        back={<Side title="DWA" color="green" />}
+        rotate={rotate}
+        style={styles.flipContainer}
+        front={<Side title="FRONT" color="blue" />}
+        back={<Side title="BACK" color="green" />}
       />
     </View>
   )
@@ -40,6 +41,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#ecf0f1",
+  },
+  flipContainer: {
+    height: 300,
+    width: 300,
+    borderWidth: 1,
+    borderColor: "red",
   },
 })
 
