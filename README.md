@@ -19,4 +19,8 @@
 />
 ```
 
-for more context see the [example app.](examples/App.tsx)
+# Try it out
+
+You can also try out the [example app](https://snack.expo.io/@pzatorski/react-native-flip-example) with Expo.
+
+The source code for the example app is under [/examples](https://github.com/czystyl/react-native-reanimated-flip/tree/develop/examples) folder.
