@@ -89,15 +89,16 @@ const ReanimatedFlip = ({
   )
 
   useCode(
-    block([
-      cond(not(eq(side, flipPosition)), [
-        set(
-          flipPosition,
-          runTiming(clock, flipPosition, side)
-          // spring({ clock: clock, from: flipPosition, to: side })
-        ),
+    () =>
+      block([
+        cond(not(eq(side, flipPosition)), [
+          set(
+            flipPosition,
+            runTiming(clock, flipPosition, side)
+            // spring({ clock: clock, from: flipPosition, to: side })
+          ),
+        ]),
       ]),
-    ]),
     [side]
   )
 

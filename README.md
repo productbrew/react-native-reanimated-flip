@@ -11,12 +11,17 @@
 # Usage
 
 ```js
-<FlipCard
-  side={0}
-  rotate="Y"
-  front={<Text>Front component</Text>}
-  back={<Text>Back component</Text>}
-/>
+import FlipCard from "react-native-flip"
+
+const make = () => {
+  return (
+    <FlipCard
+      side={0}
+      front={<Text>Front component</Text>}
+      back={<Text>Back component</Text>}
+    />
+  )
+}
 ```
 
 # Try it out
