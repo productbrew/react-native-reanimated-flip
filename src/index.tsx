@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 import { StyleSheet, ViewStyle } from "react-native"
 import Animated, { Easing } from "react-native-reanimated"
 
@@ -119,6 +119,18 @@ const ReanimatedFlip = ({
     extrapolate: Animated.Extrapolate.CLAMP,
   })
 
+  const scaleFront = interpolate(flipPosition, {
+    inputRange: [0.5, 0.51],
+    outputRange: [1, 0],
+    extrapolate: Animated.Extrapolate.CLAMP,
+  })
+
+  const scaleBack = interpolate(flipPosition, {
+    inputRange: [0.5, 0.51],
+    outputRange: [0, 1],
+    extrapolate: Animated.Extrapolate.CLAMP,
+  })
+
   return (
     <Animated.View style={StyleSheet.flatten([style, styles.container])}>
       <Animated.View
@@ -127,7 +139,11 @@ const ReanimatedFlip = ({
           styles.front,
           {
             opacity: opacityFront,
-            transform: [{ perspective }, { [`rotate${rotate}`]: rotateValue }],
+            transform: [
+              { perspective },
+              { [`rotate${rotate}`]: rotateValue },
+              { scale: scaleFront },
+            ],
           },
         ]}
       >
@@ -143,6 +159,7 @@ const ReanimatedFlip = ({
               { perspective },
               { [`rotate${rotate}`]: "180deg" },
               { [`rotate${rotate}`]: rotateValue },
+              { scale: scaleBack },
             ],
           },
         ]}
@@ -159,6 +176,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   side: {
+    width: "100%",
+    height: "100%",
     position: "absolute",
   },
   front: {
