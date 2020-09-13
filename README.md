@@ -4,7 +4,7 @@
   
 <h1>REACT NATIVE REANIMATED FLIP CARD</h1>
 
-<img width="auto" height="350" src=".gif/flip.gif">
+<img width="auto" height="350" src="./gif/flip.gif">
 
 </div>
 
