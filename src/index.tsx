@@ -137,7 +137,6 @@ const ReanimatedFlip = ({
       <Animated.View
         style={[
           styles.side,
-          styles.front,
           {
             opacity: opacityFront,
             transform: [
@@ -153,7 +152,6 @@ const ReanimatedFlip = ({
       <Animated.View
         style={[
           styles.side,
-          styles.back,
           {
             opacity: opacityBack,
             transform: [
@@ -180,12 +178,6 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     position: "absolute",
-  },
-  front: {
-    zIndex: 2,
-  },
-  back: {
-    zIndex: 1,
   },
 })
 
