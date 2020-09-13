@@ -40,8 +40,8 @@ const make = () => {
 | ----------- | --------------------------------------- | -------- | ------------- | ------- |
 | perspective | Perspective of rotation                 | NO       | Number        | 1200    |
 | side        | A value indicating Front(1) or Back(0)  | YES      | <1, 0>        | -       |
-| rotate      | A value indicating the axis of rotation | NO       | <'Y', 'X'>    | #007AFF |
-| style       | Container Style                         | NO       | ViewStyle     | #F2F5F7 |
+| rotate      | A value indicating the axis of rotation | NO       | <'Y', 'X'>    | "Y"     |
+| style       | Container Style                         | NO       | ViewStyle     | -       |
 | front       | React component in Front Side           | YES      | React.Element | -       |
 | back        | React component in Back Side            | YES      | React.Element | -       |
 
@@ -49,6 +49,6 @@ const make = () => {
 
 You can also try out the [example app](https://snack.expo.io/@pzatorski/react-native-flip-example) with Expo.
 
-You can try the [React Native App](https://github.com/Karthik-B-06/react-native-reanimated-flip/tree/rn-example-with-better-readme/rn-example/RNFlip).
+You can also try the [React Native App](https://github.com/Karthik-B-06/react-native-reanimated-flip/tree/rn-example-with-better-readme/rn-example/RNFlip).
 
 The source code for the example app is under [/examples](https://github.com/czystyl/react-native-reanimated-flip/tree/develop/examples) folder.
