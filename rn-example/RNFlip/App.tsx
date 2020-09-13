@@ -9,6 +9,7 @@
 import React from 'react';
 import {
   Button,
+  Dimensions,
   SafeAreaView,
   StatusBar,
   StyleSheet,
@@ -44,12 +45,13 @@ const App: React.FC = () => {
               activeOpacity={0.7}
               onPress={changeSide}
               style={{
-                backgroundColor: 'blue',
+                backgroundColor: '#ed8936',
                 flex: 1,
                 justifyContent: 'center',
                 alignItems: 'center',
+                borderRadius: 12,
               }}>
-              <Text style={{fontSize: 18, color: 'white'}}>Front</Text>
+              <Text style={{fontSize: 18, color: 'black'}}>Front</Text>
             </TouchableOpacity>
           }
           back={
@@ -57,10 +59,11 @@ const App: React.FC = () => {
               activeOpacity={0.7}
               onPress={changeSide}
               style={{
-                backgroundColor: 'purple',
+                backgroundColor: '#007AFF',
                 flex: 1,
                 justifyContent: 'center',
                 alignItems: 'center',
+                borderRadius: 12,
               }}>
               <Text style={{fontSize: 18, color: 'white'}}>Back</Text>
             </TouchableOpacity>
@@ -85,7 +88,7 @@ const styles = StyleSheet.create({
   },
   flipContainer: {
     height: 300,
-    width: 300,
+    width: Dimensions.get('window').width * 0.8,
   },
 });
 

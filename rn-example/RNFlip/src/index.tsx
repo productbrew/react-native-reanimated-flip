@@ -73,7 +73,7 @@ type Props = {
 };
 
 const ReanimatedFlip = ({
-  perspective = 350,
+  perspective = 1200,
   rotate = 'Y',
   side,
   front,
