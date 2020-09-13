@@ -1,6 +1,6 @@
 <div align="center">
   
-[![npm](https://badgen.net/npm/v/react-native-flip)](https://www.npmjs.com/package/react-native-flip) [![npm](https://badgen.net/npm/dt/react-native-flip)](https://www.npmjs.com/package/react-native-flip) [![npm](https://badgen.net/npm/license/react-native-flip)](https://www.npmjs.com/package/react-native-flip)
+[![npm](https://badgen.net/npm/v/react-native-flip)](https://www.npmjs.com/package/react-native-flip) [![npm](https://badgen.net/npm/dt/react-native-flip)](https://www.npmjs.com/package/react-native-flip)
   
 <h1>React Native Reanimated Flip Card</h1>
 
