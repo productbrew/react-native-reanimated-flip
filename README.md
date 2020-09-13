@@ -2,17 +2,21 @@
   
 [![npm](https://badgen.net/npm/v/react-native-flip)](https://www.npmjs.com/package/react-native-flip) [![npm](https://badgen.net/npm/dt/react-native-flip)](https://www.npmjs.com/package/react-native-flip) [![npm](https://badgen.net/npm/license/react-native-flip)](https://www.npmjs.com/package/react-native-flip)
   
-<h1>REACT NATIVE REANIMATED FLIP CARD</h1>
+<h1>React Native Reanimated Flip Card</h1>
 
-<img width="auto" height="350" src="./gif/flip.gif">
+<img width="auto" height="500" src="./gif/flip.gif">
 
 </div>
 
 # Install
 
 ```sh
-    yarn add react-native-flip
+yarn add react-native-flip
+# or
+npm i react-native-flip
 ```
+
+> :warning: You need to install [react-native-reanimated](https://docs.swmansion.com/react-native-reanimated/docs/next/installation/) and follow their installation instructions.
 
 # Usage
 
