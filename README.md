@@ -104,6 +104,13 @@ const make = () => {
 | front       | React component in Front Side           | YES      | React.Element | -       |
 | back        | React component in Back Side            | YES      | React.Element | -       |
 
+
+## :camera: Screenhots
+
+| iOS | Android |
+|-----|---------|
+|<img width="auto" height="500" src="./gif/ios.gif">|<img width="auto" height="500" src="./gif/android.gif">|
+
 # Try it out
 
 You can also try out the [example app](https://snack.expo.io/@pzatorski/react-native-flip-example) with Expo.
