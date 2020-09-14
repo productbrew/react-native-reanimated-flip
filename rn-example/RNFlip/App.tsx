@@ -14,6 +14,7 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  View,
   TouchableOpacity,
 } from 'react-native';
 import FlipCard from './src';
@@ -36,37 +37,52 @@ const App: React.FC = () => {
             setRotate((rotation) => (rotation === 'X' ? 'Y' : 'X'));
           }}
         />
+        <Button title={`Flip: ${side}`} onPress={changeSide} />
         <FlipCard
           side={side}
           rotate={rotate}
           style={styles.flipContainer}
           front={
-            <TouchableOpacity
-              activeOpacity={0.7}
-              onPress={changeSide}
+            <View
               style={{
                 backgroundColor: '#ed8936',
-                flex: 1,
-                justifyContent: 'center',
                 alignItems: 'center',
+                padding: 100,
                 borderRadius: 12,
               }}>
               <Text style={{fontSize: 18, color: 'black'}}>Front</Text>
-            </TouchableOpacity>
+              <TouchableOpacity
+                onPress={changeSide}
+                style={{
+                  padding: 10,
+                  marginTop: 20,
+                  backgroundColor: 'white',
+                  borderRadius: 12,
+                }}>
+                <Text>Click here to Flip</Text>
+              </TouchableOpacity>
+            </View>
           }
           back={
-            <TouchableOpacity
-              activeOpacity={0.7}
-              onPress={changeSide}
+            <View
               style={{
                 backgroundColor: '#007AFF',
-                flex: 1,
-                justifyContent: 'center',
                 alignItems: 'center',
+                padding: 100,
                 borderRadius: 12,
               }}>
               <Text style={{fontSize: 18, color: 'white'}}>Back</Text>
-            </TouchableOpacity>
+              <TouchableOpacity
+                onPress={changeSide}
+                style={{
+                  padding: 10,
+                  marginTop: 20,
+                  backgroundColor: 'white',
+                  borderRadius: 12,
+                }}>
+                <Text>Click here to Flip</Text>
+              </TouchableOpacity>
+            </View>
           }
         />
       </SafeAreaView>
@@ -89,6 +105,7 @@ const styles = StyleSheet.create({
   flipContainer: {
     height: 300,
     width: Dimensions.get('window').width * 0.8,
+    marginTop: 20,
   },
 });
 
