@@ -24,12 +24,71 @@ npm i react-native-flip
 import FlipCard from "react-native-flip"
 
 const make = () => {
+  const Front = (
+    <View
+      style={{
+        backgroundColor: "#ed8936",
+        alignItems: "center",
+        padding: 100,
+        borderRadius: 12,
+      }}
+    >
+      <Text style={{ fontSize: 18, color: "black" }}>Front</Text>
+      <TouchableOpacity
+        onPress={changeSide}
+        style={{
+          padding: 10,
+          marginTop: 20,
+          backgroundColor: "white",
+          borderRadius: 12,
+        }}
+      >
+        <Text>Click here to Flip</Text>
+      </TouchableOpacity>
+    </View>
+  )
+  const Back = (
+    <View
+      style={{
+        backgroundColor: "#007AFF",
+        alignItems: "center",
+        padding: 100,
+        borderRadius: 12,
+      }}
+    >
+      <Text style={{ fontSize: 18, color: "white" }}>Back</Text>
+      <TouchableOpacity
+        onPress={changeSide}
+        style={{
+          padding: 10,
+          marginTop: 20,
+          backgroundColor: "white",
+          borderRadius: 12,
+        }}
+      >
+        <Text>Click here to Flip</Text>
+      </TouchableOpacity>
+    </View>
+  )
   return (
-    <FlipCard
-      side={0}
-      front={<Text>Front component</Text>}
-      back={<Text>Back component</Text>}
-    />
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.textStyle}>Hello, World</Text>
+      <Text style={styles.textStyle}>React Native Reanimated Flip Card</Text>
+      <Button
+        title={`Change rotation. The card rotation is: ${rotate}`}
+        onPress={() => {
+          setRotate((rotation) => (rotation === "X" ? "Y" : "X"))
+        }}
+      />
+      <Button title={`Flip: ${side}`} onPress={changeSide} />
+      <FlipCard
+        side={side}
+        rotate={rotate}
+        style={styles.flipContainer}
+        front={Front}
+        back={Back}
+      />
+    </SafeAreaView>
   )
 }
 ```
