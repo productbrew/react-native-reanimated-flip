@@ -117,4 +117,4 @@ You can also try out the [example app](https://snack.expo.io/@pzatorski/react-na
 
 You can also try the [React Native App](https://github.com/Karthik-B-06/react-native-reanimated-flip/tree/rn-example-with-better-readme/rn-example/RNFlip).
 
-The source code for the example app is under [/examples](https://github.com/czystyl/react-native-reanimated-flip/tree/develop/examples) folder.
+The source code for the example app is under [/examples](https://github.com/productbrew/react-native-reanimated-flip/tree/develop/example) folder.

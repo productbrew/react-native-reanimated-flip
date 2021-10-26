@@ -1,10 +1,10 @@
 {
   "name": "react-native-flip",
-  "version": "0.1.8",
+  "version": "0.2.0",
   "author": "Luke Czyszczonik",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/czystyl/react-native-reanimated-flip"
+    "url": "git+https://github.com/productbrew/react-native-reanimated-flip"
   },
   "license": "MIT",
   "main": "lib/commonjs/index.js",
