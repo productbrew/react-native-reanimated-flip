@@ -7,10 +7,20 @@ import Animated, {
 import {ViewStyle, StyleSheet} from 'react-native';
 import React from 'react';
 
+export enum FlipSide {
+  FRONT,
+  BACK
+}
+
+export enum RotateAxis {
+  Y = 'Y',
+  X = 'X'
+}
+
 type Props = {
   perspective?: number
-  side: number
-  rotate?: "Y" | "X"
+  side: FlipSide
+  rotate?: RotateAxis
   style?: ViewStyle
   front: React.ReactElement
   back: React.ReactElement
@@ -18,7 +28,7 @@ type Props = {
 
 const ReanimatedFlip = ({
                           perspective = 1200,
-                          rotate = "Y",
+                          rotate = RotateAxis.Y,
                           side,
                           front,
                           back,
@@ -28,7 +38,7 @@ const ReanimatedFlip = ({
   const rotatePosition = Animated.interpolate(side, [0, 1],
       [0, 180])
 
-  const rotateX = useDerivedValue(() => {
+  const rotateValue = useDerivedValue(() => {
     return withTiming(rotatePosition, {
       duration: 500,
       easing: Easing.inOut(Easing.ease),
@@ -36,19 +46,19 @@ const ReanimatedFlip = ({
   });
 
   const rotationFlip = useDerivedValue(() => {
-    if (rotate === 'Y') {
+    if (rotate === RotateAxis.Y) {
       return {
-        rotateY: `${rotateX.value}deg`
+        rotateY: `${rotateValue.value}deg`
       };
     }
 
     return {
-      rotateX: `${rotateX.value}deg`
+      rotateX: `${rotateValue.value}deg`
     };
-  }, [rotate, rotateX]);
+  }, [rotate, rotateValue]);
 
   const rotationFlipBack = useDerivedValue(() => {
-    if (rotate === 'Y') {
+    if (rotate === RotateAxis.Y) {
       return {
         rotateY: '180deg'
       };
