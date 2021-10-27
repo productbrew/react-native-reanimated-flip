@@ -21,7 +21,7 @@ export default function App() {
             <Button
                 title={`Change rotation. The card rotation is: ${rotate}`}
                 onPress={() => {
-                    setRotate((rotation: RotateAxis) => (rotation === RotateAxis.X ? RotateAxis.Y : RotateAxis.Y))
+                    setRotate((rotation: RotateAxis) => (rotation === RotateAxis.X ? RotateAxis.Y : RotateAxis.X))
                 }}
             />
 
