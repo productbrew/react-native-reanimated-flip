@@ -65,17 +65,31 @@ const ReanimatedFlip = ({
     }, [rotate]);
 
     const opacityFront = useDerivedValue(() => {
-        return withTiming(side, {
-            duration: 500,
-            easing: Easing.inOut(Easing.ease),
-        });
+        return Animated.interpolate(side,
+            [0.5, 0.51],
+            [0, 1],
+            Animated.Extrapolate.CLAMP);
     }, [side]);
 
     const opacityBack = useDerivedValue(() => {
-        return withTiming(side === 0 ? 1 : 0, {
-            duration: 500,
-            easing: Easing.inOut(Easing.ease),
-        });
+        return Animated.interpolate(side,
+            [0.5, 0.51],
+            [1, 0],
+            Animated.Extrapolate.CLAMP);
+    }, [side]);
+
+    const scaleFront = useDerivedValue(() => {
+        return Animated.interpolate(side,
+            [0.5, 0.51],
+            [0, 1],
+            Animated.Extrapolate.CLAMP);
+    }, [side]);
+
+    const scaleBack = useDerivedValue(() => {
+        return Animated.interpolate(side,
+            [0.5, 0.51],
+            [1, 0],
+            Animated.Extrapolate.CLAMP);
     }, [side]);
 
     const animatedStyleFront = useAnimatedStyle(() => {
@@ -84,6 +98,7 @@ const ReanimatedFlip = ({
             transform: [
                 {perspective},
                 {...rotationFlip.value},
+                { scale: scaleFront.value }
             ],
         };
     }, [rotate, side, rotationFlip]);
@@ -95,6 +110,7 @@ const ReanimatedFlip = ({
                 {perspective},
                 {...rotationFlipBack.value},
                 {...rotationFlip.value},
+                { scale: scaleBack.value }
             ],
         };
     }, [rotate, side]);
